@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ephoto360 — TheHritu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --sky-0: #f0f9ff;
+        --sky-1: #e0f2fe;
+        --sky-2: #bae6fd;
+        --sky-3: #7dd3fc;
+        --sky-4: #38bdf8;
+        --sky-5: #0ea5e9;
+        --sky-6: #0284c7;
+        --sky-7: #0369a1;
+        --ink: #0c2340;
+        --ink-soft: #335577;
+        --white: #ffffff;
+        --card-bg: rgba(255, 255, 255, 0.72);
+        --card-border: rgba(186, 230, 253, 0.7);
+        --radius: 16px;
+        --shadow: 0 4px 24px rgba(14, 165, 233, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: linear-gradient(
+          160deg,
+          var(--sky-0) 0%,
+          var(--sky-1) 40%,
+          #dbeafe 100%
+        );
+        min-height: 100vh;
+        color: var(--ink);
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(224, 242, 254, 0.85);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--sky-2);
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .header-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .brand-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        color: var(--sky-6);
+        letter-spacing: -0.5px;
+        line-height: 1;
+      }
+      .brand-sub {
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--sky-5);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .header-meta {
+        font-size: 0.78rem;
+        color: var(--ink-soft);
+        background: var(--sky-1);
+        border: 1px solid var(--sky-2);
+        border-radius: 100px;
+        padding: 5px 14px;
+        white-space: nowrap;
+      }
+
+      .hero-title {
+        text-align: center;
+        padding: 60px 24px 40px 24px;
+        margin: 0 auto;
+      }
+      .hero-title h1 {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: clamp(3rem, 10vw, 6rem);
+        background: linear-gradient(
+          135deg,
+          var(--sky-6),
+          var(--sky-4),
+          #60a5fa
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(14, 165, 233, 0.2);
+        letter-spacing: -0.02em;
+        margin-bottom: 0.2em;
+      }
+      .hero-title p {
+        font-size: 1rem;
+        color: var(--ink-soft);
+        opacity: 0.8;
+      }
+
+      .toolbar {
+        max-width: 1400px;
+        margin: 0 auto 28px;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .search-wrap {
+        position: relative;
+        flex: 1;
+        min-width: 220px;
+        max-width: 420px;
+      }
+      .search-wrap svg {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sky-4);
+        pointer-events: none;
+      }
+      .search-input {
+        width: 100%;
+        padding: 9px 14px 9px 38px;
+        border: 1.5px solid var(--sky-2);
+        border-radius: 100px;
+        background: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.88rem;
+        color: var(--ink);
+        outline: none;
+      }
+      .search-input:focus {
+        border-color: var(--sky-4);
+      }
+      .count-badge {
+        font-size: 0.78rem;
+        color: var(--ink-soft);
+        padding: 5px 14px;
+        background: var(--sky-1);
+        border: 1px solid var(--sky-2);
+        border-radius: 100px;
+        white-space: nowrap;
+      }
+      .filter-btn {
+        padding: 7px 16px;
+        border-radius: 100px;
+        border: 1.5px solid var(--sky-2);
+        background: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--sky-5);
+        border-color: var(--sky-5);
+        color: white;
+      }
+      .grid {
+        max-width: 1400px;
+        margin: 24px auto 40px;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        animation: fadeUp 0.4s both;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 36px rgba(14, 165, 233, 0.18);
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .card-img-wrap {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%;
+        background: var(--sky-1);
+        overflow: hidden;
+      }
+      .card-img-wrap img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .img-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--sky-3);
+      }
+      .card-body {
+        padding: 14px 16px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+      }
+      .card-title {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.88rem;
+        color: var(--ink);
+        line-height: 1.35;
+        display: -webkit-box;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      .pill {
+        font-size: 0.7rem;
+        padding: 3px 9px;
+        border-radius: 100px;
+        border: 1px solid;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .pill-input {
+        background: rgba(14, 165, 233, 0.08);
+        border-color: var(--sky-3);
+        color: var(--sky-7);
+      }
+      .pill-radio {
+        background: rgba(3, 105, 161, 0.08);
+        border-color: var(--sky-5);
+        color: var(--sky-6);
+      }
+      .radio-select {
+        width: 100%;
+        padding: 7px 10px;
+        border: 1.5px solid var(--sky-2);
+        border-radius: 10px;
+        background: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.82rem;
+        color: var(--ink);
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230ea5e9' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        padding-right: 30px;
+      }
+      .radio-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--sky-6);
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 2px;
+      }
+      .reset-style-btn {
+        font-size: 0.65rem;
+        background: none;
+        border: 1px solid var(--sky-3);
+        border-radius: 100px;
+        padding: 2px 8px;
+        color: var(--sky-6);
+        cursor: pointer;
+        transition: 0.1s;
+        margin-left: 6px;
+      }
+      .reset-style-btn:hover {
+        background: var(--sky-2);
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.78rem;
+        color: var(--ink-soft);
+        border-top: 1px solid var(--sky-2);
+        background: rgba(224, 242, 254, 0.6);
+      }
+      footer a {
+        color: var(--sky-6);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .no-results {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 48px 20px;
+        color: var(--sky-6);
+        font-weight: 500;
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        border: 1px solid var(--card-border);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a
+        href="https://github.com/TheHritu/Ephoto360"
+        style="text-decoration: none"
+        ><div class="header-brand">
+          <span class="brand-name">TheHritu</span>
+          <span class="brand-sub">Ephoto Logo Previews</span>
+        </div></a
+      >
+      <div class="header-meta" id="totalCount">Loading...</div>
+    </header>
+
+    <div class="hero-title">
+      <h1>Ephoto360</h1>
+      <p>Preview & explore all text based effects</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input
+          class="search-input"
+          type="text"
+          id="searchInput"
+          placeholder="Search effects…"
+        />
+      </div>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="radio">Has Options</button>
+      <button class="filter-btn" data-filter="multi">Multi Text</button>
+      <span class="count-badge" id="countBadge">Showing 0</span>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <footer>
+      Made by
+      <a href="https://github.com/TheHritu" target="_blank"
+        >github.com/TheHritu</a
+      >
+    </footer>
+
+    <script>
+      function getRadioThumbUrl(opt) {
+        if (opt && typeof opt === "object" && opt.thumb) return opt.thumb;
+        return null;
+      }
+
+      function renderCards(dataArray) {
+        const grid = document.getElementById("grid");
+        if (!grid) return;
+        if (!dataArray || dataArray.length === 0) {
+          grid.innerHTML = `<div class="no-results">✨ No matching effects found.</div>`;
+          document.getElementById("countBadge").innerText = "Showing 0";
+          return;
+        }
+
+        let html = "";
+        for (const item of dataArray) {
+          const previewUrl = item.preview || "";
+          const hasPreview = previewUrl && previewUrl.trim() !== "";
+          const textCount = item.text_inputs ? item.text_inputs.length : 0;
+          const radioCount =
+            item.radio_data && Array.isArray(item.radio_data)
+              ? item.radio_data.length
+              : 0;
+
+          let pillsHtml = "";
+          if (textCount > 0)
+            pillsHtml += `<span class="pill pill-input">📝 ${textCount} text field${textCount > 1 ? "s" : ""}</span>`;
+          if (radioCount > 0)
+            pillsHtml += `<span class="pill pill-radio">⚡ ${radioCount} option${radioCount > 1 ? "s" : ""}</span>`;
+
+          let radioSelectHtml = "";
+          if (radioCount > 0 && item.radio_data) {
+            let optionsHtml =
+              '<option value="">-- choose style (preview) --</option>';
+            for (let opt of item.radio_data) {
+              const thumb = getRadioThumbUrl(opt);
+              const label = opt.label || JSON.stringify(opt);
+              if (thumb) {
+                optionsHtml += `<option value="${escapeHtml(thumb)}" data-thumb="${escapeHtml(thumb)}">${escapeHtml(label)}</option>`;
+              } else {
+                optionsHtml += `<option value="">${escapeHtml(label)} (no preview)</option>`;
+              }
+            }
+            radioSelectHtml = `
+          <div>
+            <div class="radio-label">📻 Choose style <button class="reset-style-btn" data-reset>↺ reset</button></div>
+            <select class="radio-select" data-path="${escapeHtml(item.path)}" data-original-preview="${escapeHtml(previewUrl)}">
+              ${optionsHtml}
+            </select>
+          </div>
+        `;
+          }
+
+          html += `
+        <div class="card" data-path="${escapeHtml(item.path)}" data-original-preview="${escapeHtml(previewUrl)}">
+          <div class="card-img-wrap" id="img-wrap-${escapeHtml(item.path.replace(/\//g, "_"))}">
+            ${hasPreview ? `<img src="${escapeHtml(previewUrl)}" alt="${escapeHtml(item.title)}" loading="lazy" class="card-img" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'img-placeholder\'>🖼️</div>';">` : `<div class="img-placeholder">🎨</div>`}
+          </div>
+          <div class="card-body">
+            <div class="card-title">${escapeHtml(item.title)}</div>
+            <div class="pills">${pillsHtml}</div>
+            ${radioSelectHtml}
+          </div>
+        </div>
+      `;
+        }
+        grid.innerHTML = html;
+
+        document.querySelectorAll(".radio-select").forEach((select) => {
+          select.addEventListener("change", function (e) {
+            const selectedThumb = this.value;
+            const card = this.closest(".card");
+            if (!card) return;
+            const imgWrap = card.querySelector(".card-img-wrap");
+            const originalPreview = this.getAttribute("data-original-preview");
+
+            if (!selectedThumb) {
+              if (originalPreview && originalPreview.trim()) {
+                imgWrap.innerHTML = `<img src="${originalPreview}" alt="preview" class="card-img" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'img-placeholder\'>🖼️</div>';">`;
+              } else {
+                imgWrap.innerHTML = `<div class="img-placeholder">🎨</div>`;
+              }
+            } else {
+              imgWrap.innerHTML = `<img src="${selectedThumb}" alt="style preview" class="card-img" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'img-placeholder\'>❌</div>';">`;
+            }
+          });
+        });
+
+        document.querySelectorAll(".reset-style-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const select = btn.closest("div")?.querySelector(".radio-select");
+            if (select) {
+              select.value = "";
+              const changeEvent = new Event("change", { bubbles: true });
+              select.dispatchEvent(changeEvent);
+            }
+          });
+        });
+
+        document.getElementById("countBadge").innerText =
+          `Showing ${dataArray.length}`;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        return String(str).replace(/[&<>]/g, function (m) {
+          if (m === "&") return "&amp;";
+          if (m === "<") return "&lt;";
+          if (m === ">") return "&gt;";
+          return m;
+        });
+      }
+
+      let FULL_DATA = [];
+      let currentFilter = "all";
+      let currentSearch = "";
+
+      function filterAndSearch() {
+        if (!FULL_DATA.length) return;
+        let filtered = [...FULL_DATA];
+        if (currentFilter === "radio") {
+          filtered = filtered.filter((item) => item.has_radio === true);
+        } else if (currentFilter === "multi") {
+          filtered = filtered.filter(
+            (item) => item.text_inputs && item.text_inputs.length > 1,
+          );
+        }
+        if (currentSearch.trim() !== "") {
+          const term = currentSearch.trim().toLowerCase();
+          filtered = filtered.filter((item) =>
+            item.title.toLowerCase().includes(term),
+          );
+        }
+        renderCards(filtered);
+      }
+
+      function setFilter(filter, btnElement) {
+        currentFilter = filter;
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          const btnFilter = btn.getAttribute("data-filter");
+          if (btnFilter === filter) btn.classList.add("active");
+          else btn.classList.remove("active");
+        });
+        filterAndSearch();
+      }
+
+      async function loadData() {
+        if (window.location.protocol === "file:") {
+          document.getElementById("grid").innerHTML =
+            `<div class="no-results">⚠️ Please use a local web server (Live Server, python -m http.server, etc.)</div>`;
+          document.getElementById("totalCount").innerText = "⚠️ Use server";
+          return false;
+        }
+        try {
+          const res = await fetch("./logourls.json");
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const raw = await res.json();
+
+          FULL_DATA = Object.entries(raw).map(([path, val]) => ({
+            path,
+            title: path
+              .replace(/^\//, "")
+              .replace(/\.html$/, "")
+              .replace(/-\d+$/, "")
+              .replace(/-/g, " ")
+              .replace(/\b\w/g, (c) => c.toUpperCase()),
+            preview: val.preview || "",
+            text_inputs: val.text_input?.data || [],
+            radio_data: val.radio_data?.data || [],
+            has_radio: (val.radio_data?.count || 0) > 0,
+          }));
+
+          document.getElementById("totalCount").innerText =
+            `${FULL_DATA.length} Effects`;
+          filterAndSearch();
+          return true;
+        } catch (err) {
+          console.error(err);
+          document.getElementById("grid").innerHTML =
+            `<div class="no-results">❌ Failed to load logourls.json</div>`;
+          return false;
+        }
+      }
+
+      async function init() {
+        await loadData();
+        const searchInput = document.getElementById("searchInput");
+        searchInput.addEventListener("input", (e) => {
+          currentSearch = e.target.value;
+          filterAndSearch();
+        });
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const filterVal = btn.getAttribute("data-filter");
+            if (filterVal) setFilter(filterVal, btn);
+          });
+        });
+      }
+      init();
+    </script>
+  </body>
+</html>

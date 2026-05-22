@@ -6,6 +6,88 @@ Python client for [Ephoto360.com](https://en.ephoto360.com) — scrapes and gene
 
 ###### I hope a STAR ⭐ from you 😊.
 
+## Some Examples
+
+Browse all at **[https://thehritu.github.io/Ephoto360/](https://thehritu.github.io/Ephoto360/)**.
+Here are a few examples:
+
+<div style="
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 16px;
+  align-items: start;
+">
+  <figure style="
+    margin: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  ">
+    <img src="./results/1.jpg" alt="4618063429" style="
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    ">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>4618063429</code>
+    </figcaption>
+  </figure>
+
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+    <img src="./results/2.jpg" alt="8" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>8</code>
+    </figcaption>
+  </figure>
+
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+    <img src="./results/3.jpg" alt="2975689126" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>2975689126</code>
+    </figcaption>
+  </figure>
+
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+    <img src="./results/4.jpg" alt="829964308" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>829964308</code>
+    </figcaption>
+  </figure>
+
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+    <img src="./results/5.jpg" alt="732453157" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>732453157</code>
+    </figcaption>
+  </figure>
+
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+    <img src="./results/6.jpg" alt="1779834160" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>1779834160</code>
+    </figcaption>
+  </figure>
+
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+    <img src="./results/7.jpg" alt="732453157" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>732453157</code>
+    </figcaption>
+  </figure>
+
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+    <img src="./results/8.jpg" alt="1779834160" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
+    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
+      <code>1779834160</code>
+    </figcaption>
+  </figure>
+</div>
+
+...and many more on the [List](https://thehritu.github.io/Ephoto360/).
+
 ## Installation
 
 ```bash
@@ -15,6 +97,8 @@ pip install Ephoto360 -U
 ---
 
 ## Setup
+
+See [Finding Slug And Other Configs](https://github.com/TheHritu/Ephoto360#finding-slug-and-other-configs) before setup.
 
 Simple setup:
 

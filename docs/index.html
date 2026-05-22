@@ -4,14 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ephoto360 — TheHritu</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --sky-0: #f0f9ff;
         --sky-1: #e0f2fe;
         --sky-2: #bae6fd;
         --sky-3: #7dd3fc;
@@ -20,14 +18,16 @@
         --sky-6: #0284c7;
         --sky-7: #0369a1;
         --ink: #0c2340;
-        --ink-soft: #335577;
-        --white: #ffffff;
-        --card-bg: rgba(255, 255, 255, 0.72);
-        --card-border: rgba(186, 230, 253, 0.7);
-        --radius: 16px;
-        --shadow: 0 4px 24px rgba(14, 165, 233, 0.1);
+        --ink2: #335577;
+        --white: #fff;
+        --cbg: rgba(255, 255, 255, 0.72);
+        --cbr: rgba(186, 230, 253, 0.7);
+        --r: 16px;
+        --sh: 0 4px 24px rgba(14, 165, 233, 0.1);
       }
-      * {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -36,65 +36,70 @@
         font-family: "DM Sans", sans-serif;
         background: linear-gradient(
           160deg,
-          var(--sky-0) 0%,
+          #f0f9ff 0%,
           var(--sky-1) 40%,
           #dbeafe 100%
         );
         min-height: 100vh;
         color: var(--ink);
       }
+      a {
+        text-decoration: none;
+      }
+
+      /* header */
       header {
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(224, 242, 254, 0.85);
+        background: rgba(224, 242, 254, 0.9);
         backdrop-filter: blur(14px);
         border-bottom: 1px solid var(--sky-2);
-        padding: 16px 32px;
+        padding: 14px 28px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
       }
-      .header-brand {
+      .brand {
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 1px;
       }
-      .brand-name {
+      .brand-n {
         font-family: "Syne", sans-serif;
         font-weight: 800;
-        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-size: clamp(1.3rem, 2.5vw, 1.9rem);
         color: var(--sky-6);
         letter-spacing: -0.5px;
         line-height: 1;
       }
-      .brand-sub {
-        font-size: 0.72rem;
+      .brand-s {
+        font-size: 0.68rem;
         font-weight: 500;
         color: var(--sky-5);
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
-      .header-meta {
-        font-size: 0.78rem;
-        color: var(--ink-soft);
+      #totalBadge {
+        font-size: 0.76rem;
+        color: var(--ink2);
         background: var(--sky-1);
         border: 1px solid var(--sky-2);
         border-radius: 100px;
-        padding: 5px 14px;
+        padding: 5px 13px;
         white-space: nowrap;
       }
 
-      .hero-title {
+      /* hero */
+      .hero {
         text-align: center;
-        padding: 60px 24px 40px 24px;
-        margin: 0 auto;
+        padding: 52px 20px 36px;
       }
-      .hero-title h1 {
+      .hero h1 {
         font-family: "Syne", sans-serif;
         font-weight: 800;
-        font-size: clamp(3rem, 10vw, 6rem);
+        font-size: clamp(2.8rem, 9vw, 5.5rem);
         background: linear-gradient(
           135deg,
           var(--sky-6),
@@ -104,131 +109,134 @@
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-shadow: 0 2px 10px rgba(14, 165, 233, 0.2);
         letter-spacing: -0.02em;
-        margin-bottom: 0.2em;
+        margin-bottom: 0.15em;
       }
-      .hero-title p {
-        font-size: 1rem;
-        color: var(--ink-soft);
+      .hero p {
+        font-size: 0.95rem;
+        color: var(--ink2);
         opacity: 0.8;
       }
 
-      .toolbar {
+      /* toolbar */
+      .bar {
         max-width: 1400px;
-        margin: 0 auto 28px;
-        padding: 0 24px;
+        margin: 0 auto 24px;
+        padding: 0 20px;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 9px;
         flex-wrap: wrap;
       }
-      .search-wrap {
+      .sw {
         position: relative;
         flex: 1;
-        min-width: 220px;
-        max-width: 420px;
+        min-width: 190px;
+        max-width: 380px;
       }
-      .search-wrap svg {
+      .sw svg {
         position: absolute;
-        left: 12px;
+        left: 11px;
         top: 50%;
         transform: translateY(-50%);
         color: var(--sky-4);
         pointer-events: none;
       }
-      .search-input {
+      .si {
         width: 100%;
-        padding: 9px 14px 9px 38px;
+        padding: 8px 13px 8px 36px;
         border: 1.5px solid var(--sky-2);
         border-radius: 100px;
         background: var(--white);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.88rem;
+        font-size: 0.86rem;
         color: var(--ink);
         outline: none;
       }
-      .search-input:focus {
-        border-color: var(--sky-4);
+      .si:focus {
+        border-color: var(--sky-5);
       }
-      .count-badge {
-        font-size: 0.78rem;
-        color: var(--ink-soft);
-        padding: 5px 14px;
-        background: var(--sky-1);
-        border: 1px solid var(--sky-2);
-        border-radius: 100px;
-        white-space: nowrap;
-      }
-      .filter-btn {
-        padding: 7px 16px;
+      .fb {
+        padding: 7px 15px;
         border-radius: 100px;
         border: 1.5px solid var(--sky-2);
         background: var(--white);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.82rem;
-        color: var(--ink-soft);
+        font-size: 0.8rem;
+        color: var(--ink2);
         cursor: pointer;
         transition: all 0.15s;
         white-space: nowrap;
       }
-      .filter-btn.active,
-      .filter-btn:hover {
+      .fb.on,
+      .fb:hover {
         background: var(--sky-5);
         border-color: var(--sky-5);
-        color: white;
+        color: #fff;
       }
+      #cntBadge {
+        font-size: 0.76rem;
+        color: var(--ink2);
+        background: var(--sky-1);
+        border: 1px solid var(--sky-2);
+        border-radius: 100px;
+        padding: 5px 13px;
+        white-space: nowrap;
+      }
+
+      /* grid */
       .grid {
         max-width: 1400px;
-        margin: 24px auto 40px;
-        padding: 0 24px;
+        margin: 0 auto 48px;
+        padding: 0 20px;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+        gap: 18px;
       }
       .card {
-        background: var(--card-bg);
-        border: 1px solid var(--card-border);
-        border-radius: var(--radius);
+        background: var(--cbg);
+        border: 1px solid var(--cbr);
+        border-radius: var(--r);
         overflow: hidden;
-        box-shadow: var(--shadow);
+        box-shadow: var(--sh);
         backdrop-filter: blur(8px);
         display: flex;
         flex-direction: column;
         transition:
           transform 0.2s,
           box-shadow 0.2s;
-        animation: fadeUp 0.4s both;
+        animation: up 0.35s both;
       }
       .card:hover {
         transform: translateY(-4px);
         box-shadow: 0 10px 36px rgba(14, 165, 233, 0.18);
       }
-      @keyframes fadeUp {
+      @keyframes up {
         from {
           opacity: 0;
-          transform: translateY(16px);
+          transform: translateY(14px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
-      .card-img-wrap {
+
+      .ci {
         position: relative;
         width: 100%;
         padding-top: 56.25%;
         background: var(--sky-1);
         overflow: hidden;
       }
-      .card-img-wrap img {
+      .ci img {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-      .img-placeholder {
+      .ci .ph {
         position: absolute;
         inset: 0;
         display: flex;
@@ -237,17 +245,18 @@
         font-size: 2rem;
         color: var(--sky-3);
       }
-      .card-body {
-        padding: 14px 16px 16px;
+
+      .cb {
+        padding: 13px 15px 15px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 9px;
         flex: 1;
       }
-      .card-title {
+      .ct {
         font-family: "Syne", sans-serif;
         font-weight: 700;
-        font-size: 0.88rem;
+        font-size: 0.86rem;
         color: var(--ink);
         line-height: 1.35;
         display: -webkit-box;
@@ -256,116 +265,186 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
+
       .pills {
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
       }
       .pill {
-        font-size: 0.7rem;
-        padding: 3px 9px;
+        font-size: 0.68rem;
+        padding: 3px 8px;
         border-radius: 100px;
         border: 1px solid;
         font-weight: 500;
         white-space: nowrap;
       }
-      .pill-input {
+      .pt {
         background: rgba(14, 165, 233, 0.08);
         border-color: var(--sky-3);
         color: var(--sky-7);
       }
-      .pill-radio {
-        background: rgba(3, 105, 161, 0.08);
+      .pr0 {
+        background: rgba(3, 105, 161, 0.09);
         border-color: var(--sky-5);
         color: var(--sky-6);
       }
-      .radio-select {
+      .pr1 {
+        background: rgba(2, 132, 199, 0.09);
+        border-color: var(--sky-6);
+        color: var(--sky-7);
+      }
+
+      /* radio */
+      .radios {
+        display: flex;
+        gap: 8px;
+      }
+      .rc {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .rc span {
+        font-size: 0.66rem;
+        font-weight: 700;
+        color: var(--sky-6);
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+      .rc input[type="text"] {
         width: 100%;
-        padding: 7px 10px;
+        padding: 5px 8px;
         border: 1.5px solid var(--sky-2);
-        border-radius: 10px;
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.76rem;
+        color: var(--ink);
+        outline: none;
+      }
+      .rc input[type="text"]:focus {
+        border-color: var(--sky-5);
+      }
+      .rc select {
+        width: 100%;
+        padding: 6px 24px 6px 8px;
+        border: 1.5px solid var(--sky-2);
+        border-radius: 8px;
         background: var(--white);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         color: var(--ink);
         cursor: pointer;
         outline: none;
         appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230ea5e9' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%230ea5e9' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
-        background-position: right 10px center;
-        padding-right: 30px;
+        background-position: right 7px center;
       }
-      .radio-label {
-        font-size: 0.7rem;
+      .rc select.hs {
+        border-radius: 0 0 8px 8px;
+      } /* has-search */
+      .rc select:focus {
+        border-color: var(--sky-5);
+      }
+      .rc .cnt {
+        font-size: 0.6rem;
+        color: var(--ink2);
+        opacity: 0.55;
+        margin-top: 1px;
+      }
+
+      /* slug row */
+      .sr {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: auto;
+        padding-top: 4px;
+      }
+      .st {
+        font-size: 0.64rem;
+        font-family: ui-monospace, monospace;
+        color: var(--ink2);
+        opacity: 0.6;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+      .cb-btn {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        padding: 4px 9px;
+        border-radius: 100px;
+        border: 1.5px solid var(--sky-3);
+        background: rgba(14, 165, 233, 0.06);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.68rem;
         font-weight: 600;
         color: var(--sky-6);
-        text-transform: uppercase;
-        letter-spacing: 0.07em;
-        margin-bottom: 2px;
-      }
-      .reset-style-btn {
-        font-size: 0.65rem;
-        background: none;
-        border: 1px solid var(--sky-3);
-        border-radius: 100px;
-        padding: 2px 8px;
-        color: var(--sky-6);
         cursor: pointer;
-        transition: 0.1s;
-        margin-left: 6px;
+        transition: 0.15s;
+        white-space: nowrap;
       }
-      .reset-style-btn:hover {
+      .cb-btn:hover {
         background: var(--sky-2);
+        border-color: var(--sky-5);
+      }
+      .cb-btn.ok {
+        background: #dcfce7;
+        border-color: #86efac;
+        color: #15803d;
+      }
+
+      .empty {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 52px 20px;
+        color: var(--sky-6);
+        font-weight: 500;
+        background: var(--cbg);
+        border-radius: var(--r);
+        border: 1px solid var(--cbr);
       }
       footer {
         text-align: center;
-        padding: 20px;
-        font-size: 0.78rem;
-        color: var(--ink-soft);
+        padding: 18px;
+        font-size: 0.76rem;
+        color: var(--ink2);
         border-top: 1px solid var(--sky-2);
         background: rgba(224, 242, 254, 0.6);
       }
       footer a {
         color: var(--sky-6);
-        text-decoration: none;
         font-weight: 600;
-      }
-      .no-results {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 48px 20px;
-        color: var(--sky-6);
-        font-weight: 500;
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        border: 1px solid var(--card-border);
       }
     </style>
   </head>
   <body>
     <header>
-      <a
-        href="https://github.com/TheHritu/Ephoto360"
-        style="text-decoration: none"
-        ><div class="header-brand">
-          <span class="brand-name">TheHritu</span>
-          <span class="brand-sub">Ephoto Logo Previews</span>
-        </div></a
-      >
-      <div class="header-meta" id="totalCount">Loading...</div>
+      <a href="https://github.com/TheHritu/Ephoto360" class="brand">
+        <span class="brand-n">TheHritu</span>
+        <span class="brand-s">Ephoto Logo Previews</span>
+      </a>
+      <span id="totalBadge">Loading…</span>
     </header>
 
-    <div class="hero-title">
+    <div class="hero">
       <h1>Ephoto360</h1>
-      <p>Preview & explore all text based effects</p>
+      <p>Preview &amp; explore all text based effects</p>
     </div>
 
-    <div class="toolbar">
-      <div class="search-wrap">
+    <div class="bar">
+      <div class="sw">
         <svg
-          width="15"
-          height="15"
+          width="14"
+          height="14"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -374,21 +453,16 @@
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
-        <input
-          class="search-input"
-          type="text"
-          id="searchInput"
-          placeholder="Search effects…"
-        />
+        <input class="si" id="si" type="text" placeholder="Search effects…" />
       </div>
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="radio">Has Options</button>
-      <button class="filter-btn" data-filter="multi">Multi Text</button>
-      <span class="count-badge" id="countBadge">Showing 0</span>
+      <button class="fb on" data-f="all">All</button>
+      <button class="fb" data-f="has-radio">Has Options</button>
+      <button class="fb" data-f="has-both">radio0 + radio1</button>
+      <button class="fb" data-f="multi-text">Multi Text</button>
+      <span id="cntBadge">Showing 0</span>
     </div>
 
     <div class="grid" id="grid"></div>
-
     <footer>
       Made by
       <a href="https://github.com/TheHritu" target="_blank"
@@ -397,206 +471,363 @@
     </footer>
 
     <script>
-      function getRadioThumbUrl(opt) {
-        if (opt && typeof opt === "object" && opt.thumb) return opt.thumb;
-        return null;
+      var IC =
+        '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      var IK =
+        '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      var SEARCH_AT = 12; // show search box when options >= this
+
+      function e(v) {
+        if (v == null) return "";
+        return String(v).replace(/[&<>"']/g, function (c) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          }[c];
+        });
       }
 
-      function renderCards(dataArray) {
-        const grid = document.getElementById("grid");
-        if (!grid) return;
-        if (!dataArray || dataArray.length === 0) {
-          grid.innerHTML = `<div class="no-results">✨ No matching effects found.</div>`;
-          document.getElementById("countBadge").innerText = "Showing 0";
+      function makeSelect(gkey, label, opts, orig) {
+        var big = opts.length >= SEARCH_AT;
+        var srch = big
+          ? '<input type="text" placeholder="Search ' + e(label) + '…">'
+          : "";
+        var sel =
+          '<select class="' +
+          (big ? "hs" : "") +
+          '" data-g="' +
+          e(gkey) +
+          '" data-o="' +
+          e(orig) +
+          '">';
+        sel +=
+          '<option value="">— ' +
+          e(label) +
+          " (" +
+          opts.length +
+          ") —</option>";
+        for (var i = 0; i < opts.length; i++) {
+          sel +=
+            '<option value="' +
+            e(opts[i].thumb) +
+            '">' +
+            e(opts[i].label) +
+            "</option>";
+        }
+        sel += "</select>";
+        return (
+          '<div class="rc"><span>' +
+          e(label) +
+          "</span>" +
+          srch +
+          sel +
+          '<em class="cnt">' +
+          opts.length +
+          " option" +
+          (opts.length !== 1 ? "s" : "") +
+          "</em></div>"
+        );
+      }
+
+      function card(it) {
+        var img = it.preview
+          ? '<img src="' +
+            e(it.preview) +
+            '" loading="lazy" onerror="this.parentElement.innerHTML=\'<span class=\\\'ph\\\'>🖼️</span>\'">'
+          : '<span class="ph">🎨</span>';
+
+        var pills = "";
+        var tc = it.ti.length;
+        if (tc)
+          pills +=
+            '<span class="pill pt">📝 ' +
+            tc +
+            " text field" +
+            (tc !== 1 ? "s" : "") +
+            "</span>";
+        if (it.r0.length)
+          pills +=
+            '<span class="pill pr0">⚡ radio0: ' +
+            it.r0.length +
+            " option" +
+            (it.r0.length !== 1 ? "s" : "") +
+            "</span>";
+        if (it.r1.length)
+          pills +=
+            '<span class="pill pr1">⚡ radio1: ' +
+            it.r1.length +
+            " option" +
+            (it.r1.length !== 1 ? "s" : "") +
+            "</span>";
+
+        var radios = "";
+        if (it.r0.length || it.r1.length) {
+          var cols = "";
+          if (it.r0.length)
+            cols += makeSelect("r0", "radio0", it.r0, it.preview);
+          if (it.r1.length)
+            cols += makeSelect("r1", "radio1", it.r1, it.preview);
+          radios = '<div class="radios">' + cols + "</div>";
+        }
+
+        return (
+          '<div class="card">' +
+          '<div class="ci">' +
+          img +
+          "</div>" +
+          '<div class="cb">' +
+          '<div class="ct">' +
+          e(it.title) +
+          "</div>" +
+          '<div class="pills">' +
+          pills +
+          "</div>" +
+          radios +
+          '<div class="sr">' +
+          '<span class="st" title="' +
+          e(it.path) +
+          '">' +
+          e(it.path) +
+          "</span>" +
+          '<button class="cb-btn" data-s="' +
+          e(it.path) +
+          '">' +
+          IC +
+          " Copy slug</button>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+        );
+      }
+
+      function render(list) {
+        var g = document.getElementById("grid");
+        document.getElementById("cntBadge").textContent =
+          "Showing " + list.length;
+        if (!list.length) {
+          g.innerHTML =
+            '<div class="empty">✨ No matching effects found.</div>';
           return;
         }
+        var h = [];
+        for (var i = 0; i < list.length; i++) h.push(card(list[i]));
+        g.innerHTML = h.join("");
 
-        let html = "";
-        for (const item of dataArray) {
-          const previewUrl = item.preview || "";
-          const hasPreview = previewUrl && previewUrl.trim() !== "";
-          const textCount = item.text_inputs ? item.text_inputs.length : 0;
-          const radioCount =
-            item.radio_data && Array.isArray(item.radio_data)
-              ? item.radio_data.length
-              : 0;
+        // bind selects
+        var sels = g.querySelectorAll("select");
+        for (var s = 0; s < sels.length; s++)
+          sels[s].addEventListener("change", onSel);
 
-          let pillsHtml = "";
-          if (textCount > 0)
-            pillsHtml += `<span class="pill pill-input">📝 ${textCount} text field${textCount > 1 ? "s" : ""}</span>`;
-          if (radioCount > 0)
-            pillsHtml += `<span class="pill pill-radio">⚡ ${radioCount} option${radioCount > 1 ? "s" : ""}</span>`;
+        // bind search inputs (inside .rc)
+        var ins = g.querySelectorAll(".rc input[type=text]");
+        for (var n = 0; n < ins.length; n++)
+          ins[n].addEventListener("input", onSrch);
 
-          let radioSelectHtml = "";
-          if (radioCount > 0 && item.radio_data) {
-            let optionsHtml =
-              '<option value="">-- choose style (preview) --</option>';
-            for (let opt of item.radio_data) {
-              const thumb = getRadioThumbUrl(opt);
-              const label = opt.label || JSON.stringify(opt);
-              if (thumb) {
-                optionsHtml += `<option value="${escapeHtml(thumb)}" data-thumb="${escapeHtml(thumb)}">${escapeHtml(label)}</option>`;
-              } else {
-                optionsHtml += `<option value="">${escapeHtml(label)} (no preview)</option>`;
-              }
-            }
-            radioSelectHtml = `
-          <div>
-            <div class="radio-label">📻 Choose style <button class="reset-style-btn" data-reset>↺ reset</button></div>
-            <select class="radio-select" data-path="${escapeHtml(item.path)}" data-original-preview="${escapeHtml(previewUrl)}">
-              ${optionsHtml}
-            </select>
-          </div>
-        `;
+        // bind copy btns
+        var btns = g.querySelectorAll(".cb-btn");
+        for (var b = 0; b < btns.length; b++)
+          btns[b].addEventListener("click", onCopy);
+      }
+
+      function onSel() {
+        var c = this.closest(".card");
+        var wi = c.querySelector(".ci");
+        var thumb = this.value;
+        var orig = this.dataset.o;
+        if (thumb) {
+          wi.innerHTML =
+            '<img src="' +
+            e(thumb) +
+            '" loading="lazy" onerror="this.parentElement.innerHTML=\'<span class=\\\'ph\\\'>❌</span>\'">';
+        } else {
+          var other = [].slice
+            .call(c.querySelectorAll("select"))
+            .filter(function (x) {
+              return x !== this && x.value;
+            }, this);
+          var show = other.length ? other[0].value : orig;
+          wi.innerHTML = show
+            ? '<img src="' + e(show) + '" loading="lazy">'
+            : '<span class="ph">🎨</span>';
+        }
+      }
+
+      function onSrch() {
+        var q = this.value.trim().toLowerCase();
+        var sel = this.parentElement.querySelector("select");
+        var opts = sel.querySelectorAll("option");
+        for (var i = 0; i < opts.length; i++) {
+          if (i === 0) {
+            opts[i].style.display = "";
+            continue;
           }
-
-          html += `
-        <div class="card" data-path="${escapeHtml(item.path)}" data-original-preview="${escapeHtml(previewUrl)}">
-          <div class="card-img-wrap" id="img-wrap-${escapeHtml(item.path.replace(/\//g, "_"))}">
-            ${hasPreview ? `<img src="${escapeHtml(previewUrl)}" alt="${escapeHtml(item.title)}" loading="lazy" class="card-img" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'img-placeholder\'>🖼️</div>';">` : `<div class="img-placeholder">🎨</div>`}
-          </div>
-          <div class="card-body">
-            <div class="card-title">${escapeHtml(item.title)}</div>
-            <div class="pills">${pillsHtml}</div>
-            ${radioSelectHtml}
-          </div>
-        </div>
-      `;
+          opts[i].style.display =
+            !q || opts[i].textContent.toLowerCase().indexOf(q) !== -1
+              ? ""
+              : "none";
         }
-        grid.innerHTML = html;
-
-        document.querySelectorAll(".radio-select").forEach((select) => {
-          select.addEventListener("change", function (e) {
-            const selectedThumb = this.value;
-            const card = this.closest(".card");
-            if (!card) return;
-            const imgWrap = card.querySelector(".card-img-wrap");
-            const originalPreview = this.getAttribute("data-original-preview");
-
-            if (!selectedThumb) {
-              if (originalPreview && originalPreview.trim()) {
-                imgWrap.innerHTML = `<img src="${originalPreview}" alt="preview" class="card-img" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'img-placeholder\'>🖼️</div>';">`;
-              } else {
-                imgWrap.innerHTML = `<div class="img-placeholder">🎨</div>`;
-              }
-            } else {
-              imgWrap.innerHTML = `<img src="${selectedThumb}" alt="style preview" class="card-img" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'img-placeholder\'>❌</div>';">`;
-            }
-          });
-        });
-
-        document.querySelectorAll(".reset-style-btn").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const select = btn.closest("div")?.querySelector(".radio-select");
-            if (select) {
-              select.value = "";
-              const changeEvent = new Event("change", { bubbles: true });
-              select.dispatchEvent(changeEvent);
-            }
-          });
-        });
-
-        document.getElementById("countBadge").innerText =
-          `Showing ${dataArray.length}`;
       }
 
-      function escapeHtml(str) {
-        if (!str) return "";
-        return String(str).replace(/[&<>]/g, function (m) {
-          if (m === "&") return "&amp;";
-          if (m === "<") return "&lt;";
-          if (m === ">") return "&gt;";
-          return m;
-        });
-      }
-
-      let FULL_DATA = [];
-      let currentFilter = "all";
-      let currentSearch = "";
-
-      function filterAndSearch() {
-        if (!FULL_DATA.length) return;
-        let filtered = [...FULL_DATA];
-        if (currentFilter === "radio") {
-          filtered = filtered.filter((item) => item.has_radio === true);
-        } else if (currentFilter === "multi") {
-          filtered = filtered.filter(
-            (item) => item.text_inputs && item.text_inputs.length > 1,
-          );
+      function onCopy() {
+        var btn = this,
+          slug = this.dataset.s;
+        function done() {
+          btn.classList.add("ok");
+          btn.innerHTML = IK + " Copied!";
+          setTimeout(function () {
+            btn.classList.remove("ok");
+            btn.innerHTML = IC + " Copy slug";
+          }, 1800);
         }
-        if (currentSearch.trim() !== "") {
-          const term = currentSearch.trim().toLowerCase();
-          filtered = filtered.filter((item) =>
-            item.title.toLowerCase().includes(term),
-          );
+        if (navigator.clipboard) {
+          navigator.clipboard
+            .writeText(slug)
+            .then(done)
+            .catch(function () {
+              fb(slug);
+              done();
+            });
+        } else {
+          fb(slug);
+          done();
         }
-        renderCards(filtered);
       }
-
-      function setFilter(filter, btnElement) {
-        currentFilter = filter;
-        document.querySelectorAll(".filter-btn").forEach((btn) => {
-          const btnFilter = btn.getAttribute("data-filter");
-          if (btnFilter === filter) btn.classList.add("active");
-          else btn.classList.remove("active");
-        });
-        filterAndSearch();
-      }
-
-      async function loadData() {
-        if (window.location.protocol === "file:") {
-          document.getElementById("grid").innerHTML =
-            `<div class="no-results">⚠️ Please use a local web server (Live Server, python -m http.server, etc.)</div>`;
-          document.getElementById("totalCount").innerText = "⚠️ Use server";
-          return false;
-        }
+      function fb(t) {
+        var a = document.createElement("textarea");
+        a.value = t;
+        a.style.cssText = "position:fixed;opacity:0";
+        document.body.appendChild(a);
+        a.select();
         try {
-          const res = await fetch("./logourls.json");
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const raw = await res.json();
-
-          FULL_DATA = Object.entries(raw).map(([path, val]) => ({
-            path,
-            title: path
-              .replace(/^\//, "")
-              .replace(/\.html$/, "")
-              .replace(/-\d+$/, "")
-              .replace(/-/g, " ")
-              .replace(/\b\w/g, (c) => c.toUpperCase()),
-            preview: val.preview || "",
-            text_inputs: val.text_input?.data || [],
-            radio_data: val.radio_data?.data || [],
-            has_radio: (val.radio_data?.count || 0) > 0,
-          }));
-
-          document.getElementById("totalCount").innerText =
-            `${FULL_DATA.length} Effects`;
-          filterAndSearch();
-          return true;
-        } catch (err) {
-          console.error(err);
-          document.getElementById("grid").innerHTML =
-            `<div class="no-results">❌ Failed to load logourls.json</div>`;
-          return false;
-        }
+          document.execCommand("copy");
+        } catch (x) {}
+        document.body.removeChild(a);
       }
 
-      async function init() {
-        await loadData();
-        const searchInput = document.getElementById("searchInput");
-        searchInput.addEventListener("input", (e) => {
-          currentSearch = e.target.value;
-          filterAndSearch();
+      var ALL = [],
+        af = "all",
+        aq = "";
+      function filt() {
+        var o = ALL;
+        if (af === "has-radio")
+          o = o.filter(function (i) {
+            return i.r0.length > 0 || i.r1.length > 0;
+          });
+        if (af === "has-both")
+          o = o.filter(function (i) {
+            return i.r0.length > 0 && i.r1.length > 0;
+          });
+        if (af === "multi-text")
+          o = o.filter(function (i) {
+            return i.ti.length > 1;
+          });
+        if (aq) {
+          var q = aq.toLowerCase();
+          o = o.filter(function (i) {
+            return i.title.toLowerCase().indexOf(q) !== -1;
+          });
+        }
+        return o;
+      }
+
+      // ── init ────────────────────────────────────────────────────────────────────
+      if (location.protocol === "file:") {
+        document.getElementById("grid").innerHTML =
+          '<div class="empty">⚠️ Use a local server — run: <code>python -m http.server</code></div>';
+        document.getElementById("totalBadge").textContent = "⚠️ Use a server";
+      } else {
+        fetch("./logourls.json")
+          .then(function (r) {
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            return r.json();
+          })
+          .then(function (raw) {
+            var keys = Object.keys(raw);
+            ALL = [];
+            for (var i = 0; i < keys.length; i++) {
+              var path = keys[i],
+                val = raw[path];
+
+              // title from slug
+              var title = path
+                .replace(/^\//, "")
+                .replace(/\.html$/, "")
+                .replace(/-\d+$/, "")
+                .replace(/-/g, " ")
+                .replace(/\b\w/g, function (c) {
+                  return c.toUpperCase();
+                });
+
+              // radio data — data is a dict: {"radio0[radio]":[...], "radio1[radio]":[...]}
+              var rd = {};
+              if (
+                val.radio_data &&
+                val.radio_data.data &&
+                typeof val.radio_data.data === "object"
+              ) {
+                rd = val.radio_data.data;
+              }
+              var r0 = rd["radio0[radio]"];
+              if (!Array.isArray(r0)) r0 = [];
+              var r1 = rd["radio1[radio]"];
+              if (!Array.isArray(r1)) r1 = [];
+
+              ALL.push({
+                path: path,
+                title: title,
+                preview: val.preview || "",
+                ti:
+                  val.text_input && Array.isArray(val.text_input.data)
+                    ? val.text_input.data
+                    : [],
+                r0: r0,
+                r1: r1,
+              });
+            }
+
+            document.getElementById("totalBadge").textContent =
+              ALL.length + " Effects";
+            render(filt());
+
+            // confirm in console what was loaded
+            var withR0 = ALL.filter(function (x) {
+              return x.r0.length > 0;
+            }).length;
+            var withR1 = ALL.filter(function (x) {
+              return x.r1.length > 0;
+            }).length;
+            console.log(
+              "[Ephoto360] Loaded",
+              ALL.length,
+              "effects |",
+              withR0,
+              "with radio0 |",
+              withR1,
+              "with radio1",
+            );
+          })
+          .catch(function (err) {
+            document.getElementById("grid").innerHTML =
+              '<div class="empty">❌ ' + err.message + "</div>";
+          });
+
+        document.getElementById("si").addEventListener("input", function () {
+          aq = this.value.trim();
+          render(filt());
         });
-        document.querySelectorAll(".filter-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const filterVal = btn.getAttribute("data-filter");
-            if (filterVal) setFilter(filterVal, btn);
+        document.querySelectorAll(".fb").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            af = this.dataset.f;
+            document.querySelectorAll(".fb").forEach(function (b) {
+              b.classList.toggle("on", b === btn);
+            });
+            render(filt());
           });
         });
       }
-      init();
     </script>
   </body>
 </html>

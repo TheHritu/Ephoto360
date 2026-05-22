@@ -11,43 +11,20 @@ Python client for [Ephoto360.com](https://en.ephoto360.com) — scrapes and gene
 Browse all at **[https://thehritu.github.io/Ephoto360/](https://thehritu.github.io/Ephoto360/)**.
 Here are a few examples:
 
-<div style="
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
-">
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/1.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/2.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/3.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/4.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/5.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/6.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/7.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
-    <img src="./results/8.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
-  </figure>
-</div>
+<table>
+  <tr>
+    <td><img src="./results/1.jpg" width="180"></td>
+    <td><img src="./results/2.jpg" width="180"></td>
+    <td><img src="./results/3.jpg" width="180"></td>
+    <td><img src="./results/4.jpg" width="180"></td>
+  </tr>
+  <tr>
+    <td><img src="./results/5.jpg" width="180"></td>
+    <td><img src="./results/6.jpg" width="180"></td>
+    <td><img src="./results/7.jpg" width="180"></td>
+    <td><img src="./results/8.jpg" width="180"></td>
+  </tr>
+</table>
 
 ...and many more on the [List](https://thehritu.github.io/Ephoto360/).
 

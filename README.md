@@ -13,76 +13,39 @@ Here are a few examples:
 
 <div style="
   display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 1fr));
-  gap: 16px;
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
 ">
-  <figure style="
-    margin: 0;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  ">
-    <img src="./results/1.jpg" alt="4618063429" style="
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
-    ">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>4618063429</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/1.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
-    <img src="./results/2.jpg" alt="8" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>8</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/2.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
-    <img src="./results/3.jpg" alt="2975689126" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>2975689126</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/3.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
-    <img src="./results/4.jpg" alt="829964308" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>829964308</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/4.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
-    <img src="./results/5.jpg" alt="732453157" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>732453157</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/5.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
-    <img src="./results/6.jpg" alt="1779834160" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>1779834160</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/6.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
-    <img src="./results/7.jpg" alt="732453157" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>732453157</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/7.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 
-  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
-    <img src="./results/8.jpg" alt="1779834160" style="width:100%; aspect-ratio:1 / 1; object-fit:cover; display:block;">
-    <figcaption style="padding: 10px 12px; font: 14px/1.4 sans-serif; color: #374151;">
-      <code>1779834160</code>
-    </figcaption>
+  <figure style="margin:0; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
+    <img src="./results/8.jpg" style="width:100%; height:120px; object-fit:cover; display:block;">
   </figure>
 </div>
 
